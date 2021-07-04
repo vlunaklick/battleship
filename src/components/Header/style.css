@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+.headerCont{
+    padding: 1rem 0;
+}
+.titHead{
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+    font-family: 'Alfa Slab One', cursive;
+    color: #000000;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}

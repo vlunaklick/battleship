@@ -1,11 +1,32 @@
-import BoardDisplay from './components/BoardDisplay'
+import HeadeR from './components/Header'
 import createPlayer from './factories /playerFactory'
+import './app.css'
+import { useState } from 'react'
+import BoardGenerator from './components/BoardGenerator'
 
 function App() {
-    let player1 = createPlayer('Valen')
+    let [showBoth, changeShow] = useState(false)
 
-    player1.board.placeShip(50, 4, 'vertical', 'Patrol')
-    return <BoardDisplay enemy={false} board={player1.board.tablero} />
+    let player1 = createPlayer('Valen')
+    let iaplayer = createPlayer('IA')
+
+    const changeShowF = () => {
+        changeShow(!showBoth)
+    }
+
+    return (
+        <>
+            <div className='container'>
+                <HeadeR />
+                <BoardGenerator
+                    player1={player1}
+                    player2={iaplayer}
+                    showAll={showBoth}
+                    changeShowF={changeShowF}
+                />
+            </div>
+        </>
+    )
 }
 
 export default App

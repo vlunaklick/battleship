@@ -2,7 +2,7 @@
     --water-col: #168aad;
     --ship-col: #adb5bd;
     --hit-cool: #c784f3;
-    --hit-ship: #b324;
+    --ship-hit: #8b0000;
     --ship-hov: #707b86;
     --water-hov: #1e6091;
 }
@@ -34,5 +34,5 @@
 }
 
 .hitS{
-    background-color: var(--hit-ship);
+    background-color: var(--ship-hit);
 }
