@@ -1,4 +1,4 @@
-import createGameboard from '../gameboard'
+import createGameboard from '../boardFactory'
 
 test('can place a ship in a bad position horizontal', () => {
     const persona = createGameboard()
