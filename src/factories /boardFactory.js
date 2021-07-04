@@ -17,6 +17,7 @@ const createGameboard = () => {
                     coords - 1,
                     naves[tablero[coords - 1].name].vertical
                 )
+                // naves[tablero[coords - 1].name].isSunk()
             }
         }
     }

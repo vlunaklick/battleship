@@ -1,0 +1,38 @@
+:root{
+    --water-col: #168aad;
+    --ship-col: #adb5bd;
+    --hit-cool: #c784f3;
+    --hit-ship: #b324;
+    --ship-hov: #707b86;
+    --water-hov: #1e6091;
+}
+
+.boxinboard{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+}
+
+.water{
+    background-color: var(--water-col);
+    cursor: pointer;
+}
+.water:hover{
+    background-color: var(--water-hov);
+}
+
+.ship{
+    background-color: var(--ship-col);
+    cursor: pointer;
+}
+.ship:hover{
+    background-color: var(--ship-hov);
+}
+
+.hitN{
+    background-color: var(--hit-cool);
+}
+
+.hitS{
+    background-color: var(--hit-ship);
+}
