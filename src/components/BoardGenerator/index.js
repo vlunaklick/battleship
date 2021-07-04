@@ -12,7 +12,7 @@ export default function BoardGenerator(props) {
                         board={props.player1.board.tablero}
                     />
                     <BoardDisplay
-                        enemy={true}
+                        enemy={false}
                         board={props.player2.board.tablero}
                     />
                 </>

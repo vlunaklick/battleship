@@ -46,6 +46,7 @@ const createGameboard = () => {
     const checkPos = (coords, longitud, direc) => {
         let posible = true
         let checkeo = coords
+        let limiteT = Math.floor((coords + 10) / 10) * 10 - 1
         if (direc === 'vertical') {
             for (let i = 0; i < longitud; i++) {
                 if (checkeo <= 99 && tablero[checkeo].hasShip === false) {
@@ -57,7 +58,11 @@ const createGameboard = () => {
             }
         } else {
             for (let i = 0; i < longitud; i++) {
-                if (checkeo <= 99 && tablero[checkeo].hasShip === false) {
+                if (
+                    checkeo <= 99 &&
+                    tablero[checkeo].hasShip === false &&
+                    checkeo <= limiteT
+                ) {
                     checkeo += 1
                 } else {
                     posible = false
