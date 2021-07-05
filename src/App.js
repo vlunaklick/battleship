@@ -10,25 +10,30 @@ function App() {
     let player1 = createPlayer('Valen')
     let iaplayer = createPlayer('IA')
 
-    for (let i = 5; i > 0; i--) {
-        let nombre =
-            i === 5
-                ? 'Carrier'
-                : i === 4
-                ? 'Battleship'
-                : i === 3
-                ? 'Submarine'
-                : i === 2
-                ? 'Patroler'
-                : 'Peque'
-        let coordenadas = Math.floor(Math.random() * 100) + 1
-        let direccion = Math.random() < 0.5 ? 'vertical' : 'horizontal'
-        console.log(coordenadas + ' y ' + direccion + ' y ' + i)
-        while (!iaplayer.board.checkPos(coordenadas - 1, i, direccion)) {
-            coordenadas = Math.floor(Math.random() * 100) + 1
+    const randomMoves = player => {
+        for (let i = 5; i > 0; i--) {
+            let nombre =
+                i === 5
+                    ? 'Carrier'
+                    : i === 4
+                    ? 'Battleship'
+                    : i === 3
+                    ? 'Submarine'
+                    : i === 2
+                    ? 'Patroler'
+                    : 'Peque'
+            let coordenadas = Math.floor(Math.random() * 100) + 1
+            let direccion = Math.random() < 0.5 ? 'vertical' : 'horizontal'
+            console.log(coordenadas + ' y ' + direccion + ' y ' + i)
+            while (!player.board.checkPos(coordenadas - 1, i, direccion)) {
+                coordenadas = Math.floor(Math.random() * 100) + 1
+            }
+            player.board.placeShip(coordenadas, i, direccion, nombre)
         }
-        iaplayer.board.placeShip(coordenadas, i, direccion, nombre)
     }
+
+    randomMoves(player1)
+    randomMoves(iaplayer)
 
     const changeShowF = () => {
         changeShow(!showBoth)
