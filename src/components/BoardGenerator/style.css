@@ -1,5 +1,22 @@
 .boardsCont{
     display: flex;
-    gap: 1rem;
+    gap: 4rem;
     justify-content: center;
+}
+.boardP{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botonP{
+    width: 100px;
+    padding: 0.3rem;
+    margin: 0.5rem 0.75rem;
+}
+
+.botonesT{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

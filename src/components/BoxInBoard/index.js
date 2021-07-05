@@ -12,5 +12,13 @@ export default function BoxInBoard(props) {
 
     let clase = `boxinboard ${especial}`
 
-    return <div className={clase}></div>
+    const enviarAtaque = () => {
+        props.mandarAtaque(props.id)
+    }
+
+    return (
+        <div
+            onClick={props.turno === 'player' ? () => enviarAtaque() : null}
+            className={clase}></div>
+    )
 }

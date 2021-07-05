@@ -7,20 +7,33 @@ export default function BoardGenerator(props) {
         <div className='boardsCont'>
             {props.showAll ? (
                 <>
+                    <BoardDisplay enemy={false} board={props.player1} />
                     <BoardDisplay
                         enemy={false}
-                        board={props.player1.board.tablero}
-                    />
-                    <BoardDisplay
-                        enemy={false}
-                        board={props.player2.board.tablero}
+                        board={props.player2}
+                        turno={props.turno}
+                        mandarAtaque={props.mandarAtaque}
                     />
                 </>
             ) : (
-                <BoardDisplay
-                    enemy={false}
-                    board={props.player1.board.tablero}
-                />
+                <div className='boardP'>
+                    <BoardDisplay enemy={false} board={props.player1} />
+                    <div className='botonesT'>
+                        <button
+                            className='botonP'
+                            onClick={() => props.randomP()}>
+                            Random
+                        </button>
+                        <button
+                            className='botonP'
+                            onClick={() => props.resetear()}>
+                            Reset
+                        </button>
+                    </div>
+                    <button className='botonP' onClick={() => props.iniciar()}>
+                        Accept
+                    </button>
+                </div>
             )}
         </div>
     )
