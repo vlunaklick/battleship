@@ -7,6 +7,8 @@ import BoardGenerator from './components/BoardGenerator'
 function App() {
     let [showBoth, changeShow] = useState(false)
     let [turno, changeTurno] = useState('player')
+    let [orientacion, changeOrientacion] = useState('vertical')
+    let [espacios, changeEspacios] = useState('5')
 
     let player1 = createPlayer('Valen')
     let iaplayer = createPlayer('IA')
@@ -48,6 +50,7 @@ function App() {
 
     const resetP = () => {
         changeTableroP(player1.board.init)
+        changeEspacios(5)
     }
 
     const updateTP = (player, valor) => {
@@ -59,8 +62,10 @@ function App() {
     }
 
     const changeShowF = () => {
-        randomMoves(iaplayer)
-        changeShow(!showBoth)
+        if (espacios === 0) {
+            randomMoves(iaplayer)
+            changeShow(!showBoth)
+        }
     }
 
     const cambiarTurno = () => {
@@ -69,13 +74,51 @@ function App() {
 
     const sendAttack = coords => {
         if (turno === 'player') {
-            iaplayer.board.receiveAttack(coords)
+            iaplayer.board.receiveAttack(tableroIA, coords)
         }
         cambiarTurno()
     }
 
+    const ponerShip = coord => {
+        let nombre =
+            espacios === 5
+                ? 'Carrier'
+                : espacios === 4
+                ? 'Battleship'
+                : espacios === 3
+                ? 'Submarine'
+                : espacios === 2
+                ? 'Patroler'
+                : 'Peque'
+        let cambioRandom
+        if (
+            player1.board.checkPos(
+                tableroPlayer,
+                coord - 1,
+                espacios,
+                orientacion
+            )
+        ) {
+            changeEspacios(prevState => prevState - 1)
+        }
+        cambioRandom = player1.board.placeShip(
+            tableroPlayer,
+            coord,
+            espacios,
+            orientacion,
+            nombre
+        )
+        updateTP(player1, cambioRandom)
+    }
+
     const randomP = () => {
         randomMoves(player1, tableroPlayer)
+    }
+
+    const cambiarOrientacion = () => {
+        changeOrientacion(prevState =>
+            prevState === 'vertical' ? 'horizontal' : 'vertical'
+        )
     }
 
     return (
@@ -91,6 +134,9 @@ function App() {
                     iniciar={changeShowF}
                     randomP={randomP}
                     resetear={resetP}
+                    orientacion={orientacion}
+                    cambiarOri={cambiarOrientacion}
+                    ponerShip={ponerShip}
                 />
             </div>
         </>

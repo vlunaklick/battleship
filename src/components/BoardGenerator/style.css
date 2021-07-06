@@ -13,6 +13,7 @@
     width: 100px;
     padding: 0.3rem;
     margin: 0.5rem 0.75rem;
+    text-transform: capitalize;
 }
 
 .botonesT{
