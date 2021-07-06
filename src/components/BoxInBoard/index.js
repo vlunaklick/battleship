@@ -6,6 +6,8 @@ export default function BoxInBoard(props) {
             ? 'water'
             : props.hit && props.ship
             ? 'hitS'
+            : props.hit && props.shipM
+            ? 'hitS'
             : props.hit && !props.ship
             ? 'hitN'
             : 'ship'
@@ -13,18 +15,12 @@ export default function BoxInBoard(props) {
     let clase = `boxinboard ${especial}`
 
     const enviarAtaque = () => {
-        props.accion(props.id)
+        if (props.atacar === 'atacar') {
+            if (props.turno === 'player') props.mandarAtaque(props.id)
+        } else if (props.atacar === 'poner') {
+            props.ponerShip(props.id)
+        }
     }
 
-    return (
-        <div
-            onClick={
-                !props.atacar
-                    ? () => enviarAtaque()
-                    : props.turno === 'player'
-                    ? () => enviarAtaque()
-                    : null
-            }
-            className={clase}></div>
-    )
+    return <div onClick={() => enviarAtaque()} className={clase}></div>
 }

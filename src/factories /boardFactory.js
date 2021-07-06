@@ -9,7 +9,8 @@ const createGameboard = () => {
         return tablero
     }
 
-    const receiveAttack = (tablero, coords) => {
+    const receiveAttack = (naves, tablero, coords) => {
+        console.log(naves)
         if (!tablero[coords - 1].isHit) {
             tablero[coords - 1].isHit = true
             if (tablero[coords - 1].hasShip) {
@@ -22,13 +23,17 @@ const createGameboard = () => {
         }
     }
 
-    let naves = {}
-
-    const placeShip = (tablero, coords, longitud, direc, nombre) => {
+    const placeShip = (tablero, coords, longitud, direc, nombre, naves) => {
         let resultado = [...tablero]
+        let navesRes = { ...naves }
         if (checkPos(resultado, coords - 1, longitud, direc)) {
-            naves[nombre] = createShip(nombre, longitud, direc, coords - 1)
-            naves[nombre].darLives(longitud)
+            navesRes[`${nombre}`] = createShip(
+                nombre,
+                longitud,
+                direc,
+                coords - 1
+            )
+            navesRes[`${nombre}`].darLives(longitud)
             let newC = coords - 1
             if (direc === 'vertical') {
                 for (let i = 0; i < longitud; i++) {
@@ -44,7 +49,7 @@ const createGameboard = () => {
                 }
             }
         }
-        return resultado
+        return [resultado, navesRes]
     }
 
     const checkPos = (tablero, coords, longitud, direc) => {
@@ -76,7 +81,7 @@ const createGameboard = () => {
         return posible
     }
 
-    return { init, checkPos, placeShip, receiveAttack, naves }
+    return { init, checkPos, placeShip, receiveAttack }
 }
 
 export default createGameboard

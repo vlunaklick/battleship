@@ -7,12 +7,18 @@ export default function BoardGenerator(props) {
         <div className='boardsCont'>
             {props.showAll ? (
                 <>
-                    <BoardDisplay enemy={false} board={props.player1} />
+                    <BoardDisplay
+                        enemy={false}
+                        board={props.player1}
+                        atacar={'nada'}
+                        mandarAtaque={props.mandarAtaque}
+                        ponerShip={props.ponerShip}
+                    />
                     <BoardDisplay
                         enemy={false}
                         board={props.player2}
                         turno={props.turno}
-                        atacar={true}
+                        atacar={'atacar'}
                         mandarAtaque={props.mandarAtaque}
                         ponerShip={props.ponerShip}
                     />
@@ -22,7 +28,7 @@ export default function BoardGenerator(props) {
                     <BoardDisplay
                         enemy={false}
                         board={props.player1}
-                        atacar={false}
+                        atacar={'poner'}
                         ponerShip={props.ponerShip}
                         mandarAtaque={props.mandarAtaque}
                     />
