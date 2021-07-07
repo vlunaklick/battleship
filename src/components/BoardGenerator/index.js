@@ -14,6 +14,7 @@ export default function BoardGenerator(props) {
                         atacar={'nada'}
                         mandarAtaque={props.mandarAtaque}
                         ponerShip={props.ponerShip}
+                        select='Your'
                     />
                     <BoardDisplay
                         enemy={true}
@@ -22,6 +23,7 @@ export default function BoardGenerator(props) {
                         atacar={'atacar'}
                         mandarAtaque={props.mandarAtaque}
                         ponerShip={props.ponerShip}
+                        select='IA'
                     />
                 </>
             ) : (

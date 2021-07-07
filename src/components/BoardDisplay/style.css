@@ -6,3 +6,23 @@
     grid-template-rows: repeat(10,10%);
     margin-bottom: 1rem;
 }
+
+.agruparBoard{
+    display: flex;
+    flex-direction: column;
+}
+
+.textB{
+    padding: 1rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0 2 3px #000;
+}
+
+.tB{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

@@ -16,7 +16,8 @@ export default function BoxInBoard(props) {
 
     const enviarAtaque = () => {
         if (props.atacar === 'atacar') {
-            if (props.turno === 'player') props.mandarAtaque(props.id)
+            if (props.turno === 'player' && !props.hit)
+                props.mandarAtaque(props.id)
         } else if (props.atacar === 'poner') {
             props.ponerShip(props.id)
         }

@@ -20,7 +20,18 @@ function BoardDisplay(props) {
             />
         )
     })
-    return <div className='userBoard'>{cajas}</div>
+    return (
+        <div className='agruparBoard'>
+            <div className='userBoard'>{cajas}</div>
+            {props.select === 'IA' || props.select === 'Your' ? (
+                <div className='textB'>
+                    <h3 className='tB'>{props.select} Board</h3>
+                </div>
+            ) : (
+                ''
+            )}
+        </div>
+    )
 }
 
 export default BoardDisplay
