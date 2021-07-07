@@ -10,6 +10,8 @@
 .agruparBoard{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .textB{
@@ -17,6 +19,7 @@
     background-color: whitesmoke;
     border-radius: 5px;
     box-shadow: 0 2 3px #000;
+    width: 400px;
 }
 
 .tB{
