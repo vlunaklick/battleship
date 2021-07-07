@@ -2,10 +2,12 @@ import createGameboard from './boardFactory'
 
 const createPlayer = name => {
     let board = createGameboard()
-    const fireShip = (coords, opoBoard) => {
+    const fireShip = (naves, opoBoard, coords) => {
+        let devuelta
         if (opoBoard[coords - 1].isHit === false) {
-            opoBoard.receiveAttack(coords)
+            devuelta = board.receiveAttack(naves, opoBoard, coords)
         }
+        return devuelta
     }
 
     return { name, fireShip, board }

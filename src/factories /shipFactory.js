@@ -1,7 +1,7 @@
-const createShip = (nombre, longitud, vertical, start) => {
+const createShip = (name, longitud, vertical, start) => {
     let lives = []
     let inicio = start
-    let long = longitud
+    let nombre = name
 
     const darLives = valor => {
         for (let i = 0; i < valor; i++) {
@@ -9,18 +9,21 @@ const createShip = (nombre, longitud, vertical, start) => {
         }
     }
 
-    const hit = (pos, vertical) => {
-        if (vertical === 'vertical') {
-            lives[(pos - inicio) / 10] = 'X'
+    const hit = (pos, ori, long) => {
+        let longD = [...long]
+        if (ori === 'vertical') {
+            longD[(pos - inicio) / 10] = 'X'
         } else {
-            lives[pos - inicio] = 'X'
+            longD[pos - inicio] = 'X'
         }
+        return longD
     }
 
-    const isSunk = () => {
+    const isSunk = long => {
+        let valC = long
         let sunk = true
-        for (let i = 0; i < long; i++) {
-            if (lives[i] !== 'X') {
+        for (let i = 0; i < long.length; i++) {
+            if (valC[i] !== 'X') {
                 sunk = false
                 break
             }

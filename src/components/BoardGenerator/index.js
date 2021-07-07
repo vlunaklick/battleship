@@ -1,5 +1,6 @@
 import React from 'react'
 import BoardDisplay from '../BoardDisplay'
+import TextTopP from '../TextTopP/TextTopP'
 import './style.css'
 
 export default function BoardGenerator(props) {
@@ -15,7 +16,7 @@ export default function BoardGenerator(props) {
                         ponerShip={props.ponerShip}
                     />
                     <BoardDisplay
-                        enemy={false}
+                        enemy={true}
                         board={props.player2}
                         turno={props.turno}
                         atacar={'atacar'}
@@ -24,34 +25,39 @@ export default function BoardGenerator(props) {
                     />
                 </>
             ) : (
-                <div className='boardP'>
-                    <BoardDisplay
-                        enemy={false}
-                        board={props.player1}
-                        atacar={'poner'}
-                        ponerShip={props.ponerShip}
-                        mandarAtaque={props.mandarAtaque}
-                    />
-                    <div className='botonesT'>
+                <div className='containerWP'>
+                    <TextTopP placing={props.espacios} />
+                    <div className='boardP'>
+                        <BoardDisplay
+                            enemy={false}
+                            board={props.player1}
+                            atacar={'poner'}
+                            ponerShip={props.ponerShip}
+                            mandarAtaque={props.mandarAtaque}
+                        />
+                        <div className='botonesT'>
+                            <button
+                                className='botonP'
+                                onClick={() => props.randomP()}>
+                                Random
+                            </button>
+                            <button
+                                className='botonP'
+                                onClick={() => props.cambiarOri()}>
+                                {props.orientacion}
+                            </button>
+                            <button
+                                className='botonP'
+                                onClick={() => props.resetear()}>
+                                Reset
+                            </button>
+                        </div>
                         <button
                             className='botonP'
-                            onClick={() => props.randomP()}>
-                            Random
-                        </button>
-                        <button
-                            className='botonP'
-                            onClick={() => props.cambiarOri()}>
-                            {props.orientacion}
-                        </button>
-                        <button
-                            className='botonP'
-                            onClick={() => props.resetear()}>
-                            Reset
+                            onClick={() => props.iniciar()}>
+                            Accept
                         </button>
                     </div>
-                    <button className='botonP' onClick={() => props.iniciar()}>
-                        Accept
-                    </button>
                 </div>
             )}
         </div>

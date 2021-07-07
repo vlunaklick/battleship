@@ -10,8 +10,8 @@ function BoardDisplay(props) {
             <BoxInBoard
                 key={uniqid()}
                 id={id}
-                ship={props.enemy ? '' : item.hasShip}
-                shipM={item.hasShip}
+                enemy={props.enemy}
+                ship={item.hasShip}
                 hit={item.isHit}
                 turno={props.turno}
                 atacar={props.atacar}

@@ -8,7 +8,7 @@ function App() {
     let [showBoth, changeShow] = useState(false)
     let [turno, changeTurno] = useState('player')
     let [orientacion, changeOrientacion] = useState('vertical')
-    let [espacios, changeEspacios] = useState('5')
+    let [espacios, changeEspacios] = useState(5)
 
     let player1 = createPlayer('Valen')
     let iaplayer = createPlayer('IA')
@@ -34,6 +34,7 @@ function App() {
     const randomMoves = player => {
         let change = player.board.init()
         let cambioRandom
+        let navesS = player.name === 'Valen' ? navesPlayer : navesIA
         for (let i = 5; i > 0; i--) {
             let nombre =
                 i === 5
@@ -45,25 +46,30 @@ function App() {
                     : i === 2
                     ? 'Patroler'
                     : 'Peque'
+            let numero = i !== 1 ? i : 2
             let coordenadas = Math.floor(Math.random() * 100) + 1
             let direccion = Math.random() < 0.5 ? 'vertical' : 'horizontal'
             while (
-                !player.board.checkPos(change, coordenadas - 1, i, direccion)
+                !player.board.checkPos(
+                    change,
+                    coordenadas - 1,
+                    numero,
+                    direccion
+                )
             ) {
                 coordenadas = Math.floor(Math.random() * 100) + 1
             }
-            let navesS = player.name === 'Valen' ? navesPlayer : navesIA
             cambioRandom = player.board.placeShip(
                 change,
                 coordenadas,
-                i,
+                numero,
                 direccion,
                 nombre,
                 navesS
             )
             navesS = cambioRandom[1]
         }
-        updateTP(player, cambioRandom[0], cambioRandom[1])
+        updateTP(player, cambioRandom[0], navesS)
         changeEspacios(0)
     }
 
@@ -73,6 +79,7 @@ function App() {
             Carrier: {},
             Battleship: {},
             Submarine: {},
+            Patroler: {},
             Peque: {},
         })
         changeEspacios(5)
@@ -80,11 +87,11 @@ function App() {
 
     const updateTP = (player, valor, naves) => {
         if (player.name === 'Valen') {
-            changeTableroP(valor)
             changeNavesP(naves)
+            changeTableroP(valor)
         } else {
-            changeTableroIA(valor)
             changeNavesIA(naves)
+            changeTableroIA(valor)
         }
     }
 
@@ -101,15 +108,23 @@ function App() {
 
     const sendAttack = coords => {
         if (turno === 'player') {
-            iaplayer.board.receiveAttack(navesIA, tableroIA, coords)
+            let ataque1 = player1.fireShip(navesIA, tableroIA, coords)
+            changeNavesIA(ataque1)
         }
         cambiarTurno()
-        let coordenadas = Math.floor(Math.random() * 100) + 1
-        while (tableroPlayer[coordenadas].isHit === true) {
-            coordenadas = Math.floor(Math.random() * 100) + 1
-        }
-        iaplayer.board.receiveAttack(navesPlayer, tableroPlayer, coordenadas)
-        cambiarTurno()
+        setTimeout(() => {
+            let coordenadas = Math.floor(Math.random() * 100) + 1
+            while (tableroPlayer[coordenadas - 1].isHit !== false) {
+                coordenadas = Math.floor(Math.random() * 100) + 1
+            }
+            let ataque2 = iaplayer.fireShip(
+                navesPlayer,
+                tableroPlayer,
+                coordenadas
+            )
+            changeNavesP(ataque2)
+            cambiarTurno()
+        }, 1000)
     }
 
     const ponerShip = coord => {
@@ -123,21 +138,23 @@ function App() {
                 : espacios === 2
                 ? 'Patroler'
                 : 'Peque'
+        let numero = espacios !== 1 ? espacios : 2
         let cambioRandom
         if (
             player1.board.checkPos(
                 tableroPlayer,
                 coord - 1,
-                espacios,
+                numero,
                 orientacion
-            )
+            ) &&
+            espacios !== 0
         ) {
             changeEspacios(prevState => prevState - 1)
         }
         cambioRandom = player1.board.placeShip(
             tableroPlayer,
             coord,
-            espacios,
+            numero,
             orientacion,
             nombre,
             navesPlayer
@@ -146,7 +163,7 @@ function App() {
     }
 
     const randomP = () => {
-        randomMoves(player1, tableroPlayer)
+        randomMoves(player1)
     }
 
     const cambiarOrientacion = () => {
@@ -171,6 +188,7 @@ function App() {
                     orientacion={orientacion}
                     cambiarOri={cambiarOrientacion}
                     ponerShip={ponerShip}
+                    espacios={espacios}
                 />
             </div>
         </>

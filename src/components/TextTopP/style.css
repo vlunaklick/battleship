@@ -1,0 +1,14 @@
+.titlePlace{
+    background-color: whitesmoke;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.titPlace{
+    margin: 0;
+    font-size: 1rem;
+}

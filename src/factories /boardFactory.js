@@ -10,17 +10,20 @@ const createGameboard = () => {
     }
 
     const receiveAttack = (naves, tablero, coords) => {
-        console.log(naves)
-        if (!tablero[coords - 1].isHit) {
+        let valor = { ...naves }
+        if (tablero[coords - 1].isHit === false) {
             tablero[coords - 1].isHit = true
-            if (tablero[coords - 1].hasShip) {
-                naves[tablero[coords - 1].name].hit(
+            if (tablero[coords - 1].hasShip === true) {
+                valor[tablero[coords - 1].name].lives = valor[
+                    tablero[coords - 1].name
+                ].hit(
                     coords - 1,
-                    naves[tablero[coords - 1].name].vertical
+                    valor[tablero[coords - 1].name].vertical,
+                    valor[tablero[coords - 1].name].lives
                 )
-                // naves[tablero[coords - 1].name].isSunk()
             }
         }
+        return valor
     }
 
     const placeShip = (tablero, coords, longitud, direc, nombre, naves) => {
@@ -38,13 +41,13 @@ const createGameboard = () => {
             if (direc === 'vertical') {
                 for (let i = 0; i < longitud; i++) {
                     resultado[newC].hasShip = true
-                    resultado[newC].name = naves[nombre].nombre
+                    resultado[newC].name = nombre
                     newC += 10
                 }
             } else {
                 for (let i = 0; i < longitud; i++) {
                     resultado[newC].hasShip = true
-                    resultado[newC].name = naves[nombre].nombre
+                    resultado[newC].name = nombre
                     newC += 1
                 }
             }

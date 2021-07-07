@@ -4,13 +4,13 @@ export default function BoxInBoard(props) {
     let especial =
         !props.ship && !props.hit
             ? 'water'
-            : props.hit && props.ship
+            : props.ship && props.hit
             ? 'hitS'
-            : props.hit && props.shipM
-            ? 'hitS'
-            : props.hit && !props.ship
-            ? 'hitN'
-            : 'ship'
+            : props.ship && props.enemy && !props.hit
+            ? 'water'
+            : props.ship && !props.enemy && !props.hit
+            ? 'ship'
+            : 'hitN'
 
     let clase = `boxinboard ${especial}`
 
