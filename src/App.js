@@ -9,6 +9,9 @@ function App() {
     let [turno, changeTurno] = useState('player')
     let [orientacion, changeOrientacion] = useState('vertical')
     let [espacios, changeEspacios] = useState(5)
+    let [shipsLP, changeShipsLP] = useState(5)
+    let [shipsLIA, changeShipsLIA] = useState(5)
+    let [ganador, changeGanador] = useState(false)
 
     let player1 = createPlayer('Valen')
     let iaplayer = createPlayer('IA')
@@ -83,6 +86,10 @@ function App() {
             Peque: {},
         })
         changeEspacios(5)
+        changeShipsLP(5)
+        changeShipsLIA(5)
+        changeShow(false)
+        changeGanador(false)
     }
 
     const updateTP = (player, valor, naves) => {
@@ -107,24 +114,43 @@ function App() {
     }
 
     const sendAttack = coords => {
-        if (turno === 'player') {
-            let ataque1 = player1.fireShip(navesIA, tableroIA, coords)
-            changeNavesIA(ataque1)
-        }
-        cambiarTurno()
-        setTimeout(() => {
-            let coordenadas = Math.floor(Math.random() * 100) + 1
-            while (tableroPlayer[coordenadas - 1].isHit !== false) {
-                coordenadas = Math.floor(Math.random() * 100) + 1
+        if (shipsLP === 0) {
+            changeGanador(true)
+        } else {
+            if (turno === 'player') {
+                let ataque1 = player1.fireShip(navesIA, tableroIA, coords)
+                changeNavesIA(ataque1[0])
+                if (ataque1[1]) {
+                    changeShipsLIA(prevState => {
+                        console.log(prevState)
+                        console.log(prevState - 1)
+                        return prevState - 1
+                    })
+                }
             }
-            let ataque2 = iaplayer.fireShip(
-                navesPlayer,
-                tableroPlayer,
-                coordenadas
-            )
-            changeNavesP(ataque2)
+        }
+
+        if (shipsLIA === 0) {
+            changeGanador(true)
+        } else {
             cambiarTurno()
-        }, 1000)
+            setTimeout(() => {
+                let coordenadas = Math.floor(Math.random() * 100) + 1
+                while (tableroPlayer[coordenadas - 1].isHit !== false) {
+                    coordenadas = Math.floor(Math.random() * 100) + 1
+                }
+                let ataque2 = iaplayer.fireShip(
+                    navesPlayer,
+                    tableroPlayer,
+                    coordenadas
+                )
+                changeNavesP(ataque2[0])
+                if (ataque2[1]) {
+                    changeShipsLP(prevState => prevState - 1)
+                }
+                cambiarTurno()
+            }, 700)
+        }
     }
 
     const ponerShip = coord => {
@@ -175,6 +201,18 @@ function App() {
     return (
         <>
             <div className='container'>
+                {ganador ? (
+                    <div className='winnerAnnouncement'>
+                        <h2 className='textWinner'>
+                            {shipsLP === 0 ? 'The IA wins' : 'You won!'}
+                        </h2>
+                        <button className='botonP' onClick={() => resetP()}>
+                            Restart
+                        </button>
+                    </div>
+                ) : (
+                    ''
+                )}
                 <HeadeR />
                 <BoardGenerator
                     player1={tableroPlayer}
@@ -189,6 +227,9 @@ function App() {
                     cambiarOri={cambiarOrientacion}
                     ponerShip={ponerShip}
                     espacios={espacios}
+                    hayGanador={ganador}
+                    puntosP={shipsLP}
+                    puntosIA={shipsLIA}
                 />
             </div>
         </>

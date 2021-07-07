@@ -1,4 +1,20 @@
 .container{
     background-color: #003049;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+.winnerAnnouncement{
+    background-color: rgba(0, 0, 0, 0.568);
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.textWinner{
+    margin: 0;
+    color: white;
+    margin-top: 5rem;
 }

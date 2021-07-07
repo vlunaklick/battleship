@@ -11,6 +11,7 @@ const createGameboard = () => {
 
     const receiveAttack = (naves, tablero, coords) => {
         let valor = { ...naves }
+        let sunked
         if (tablero[coords - 1].isHit === false) {
             tablero[coords - 1].isHit = true
             if (tablero[coords - 1].hasShip === true) {
@@ -21,9 +22,13 @@ const createGameboard = () => {
                     valor[tablero[coords - 1].name].vertical,
                     valor[tablero[coords - 1].name].lives
                 )
+                sunked = valor[tablero[coords - 1].name].isSunk(
+                    valor[tablero[coords - 1].name].lives
+                )
             }
         }
-        return valor
+
+        return [valor, sunked]
     }
 
     const placeShip = (tablero, coords, longitud, direc, nombre, naves) => {
