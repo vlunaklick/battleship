@@ -7,25 +7,30 @@ export default function BoardGenerator(props) {
     return (
         <div className='boardsCont'>
             {props.showAll ? (
-                <div className='containerWP'>
+                <div className='containerALL'>
                     <div className='textingGame'></div>
-                    <BoardDisplay
-                        enemy={false}
-                        board={props.player1}
-                        atacar={'nada'}
-                        mandarAtaque={props.mandarAtaque}
-                        ponerShip={props.ponerShip}
-                        select='Your'
-                    />
-                    <BoardDisplay
-                        enemy={false}
-                        board={props.player2}
-                        turno={props.turno}
-                        atacar={'atacar'}
-                        mandarAtaque={props.mandarAtaque}
-                        ponerShip={props.ponerShip}
-                        select='IA'
-                    />
+                    <div className='containerWP'>
+                        <BoardDisplay
+                            enemy={false}
+                            board={props.player1}
+                            atacar={'nada'}
+                            mandarAtaque={props.mandarAtaque}
+                            ponerShip={props.ponerShip}
+                            select='Your'
+                        />
+                        <BoardDisplay
+                            enemy={true}
+                            board={props.player2}
+                            turno={props.turno}
+                            atacar={'atacar'}
+                            mandarAtaque={props.mandarAtaque}
+                            ponerShip={props.ponerShip}
+                            select='IA'
+                        />
+                    </div>
+                    <button className='botonP' onClick={() => props.resetear()}>
+                        Play Again
+                    </button>
                 </div>
             ) : (
                 <div className='containerWP'>

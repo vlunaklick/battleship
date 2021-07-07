@@ -1,16 +1,14 @@
 :root{
-    --water-col: #168aad;
-    --ship-col: #adb5bd;
-    --hit-cool: #621364;
+    --water-col: #d4f1f9;
+    --ship-col: #787f86;
+    --hit-cool: #43707e;
     --ship-hit: #8b0000;
-    --ship-hov: #707b86;
-    --water-hov: #1e6091;
+    --ship-hov: #4c535a;
+    --water-hov: #a4c3cc;
 }
 
 .boxinboard{
-    width: 40px;
-    height: 40px;
-    border: 1px solid #000;
+    border: 1px solid rgba(0, 0, 0, 0.486);
 }
 
 .water{
