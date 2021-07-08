@@ -13,8 +13,8 @@
 }
 
 .textB{
-    padding: 1rem;
-    background-color: whitesmoke;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.247);
     border-radius: 5px;
     width: inherit;
 }
@@ -25,4 +25,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .tB{
+        font-size: 0.7rem;
+    }
 }

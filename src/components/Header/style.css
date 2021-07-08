@@ -2,6 +2,8 @@
 
 .headerCont{
     padding: 1rem 0;
+    background-color: rgba(0, 0, 0, 0.582);
+    margin-bottom: 1rem;
 }
 .titHead{
     font-size: 3rem;

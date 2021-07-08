@@ -12,6 +12,8 @@ function App() {
     let [shipsLP, changeShipsLP] = useState(5)
     let [shipsLIA, changeShipsLIA] = useState(5)
     let [ganador, changeGanador] = useState(false)
+    let [turnoParaMostrar, changeTurnoPaMos] = useState(0)
+    let [hited, changeHited] = useState('water')
 
     let player1 = createPlayer('Valen')
     let iaplayer = createPlayer('IA')
@@ -180,6 +182,14 @@ function App() {
                 return prevState - 1
             })
         }
+        if (turnoParaMostrar === 0) {
+            changeTurnoPaMos(prevState => prevState + 1)
+        }
+        if (ataque1[2] === true) {
+            changeHited('ship')
+        } else {
+            changeHited('water')
+        }
     }
 
     const ataqueIA = () => {
@@ -197,6 +207,11 @@ function App() {
                 }
                 return prevState - 1
             })
+        }
+        if (ataque2[2] === true) {
+            changeHited('ship')
+        } else {
+            changeHited('water')
         }
     }
 
@@ -232,6 +247,8 @@ function App() {
                     hayGanador={ganador}
                     puntosP={shipsLP}
                     puntosIA={shipsLIA}
+                    turnoMostrar={turnoParaMostrar}
+                    hiten={hited}
                 />
             </div>
         </>

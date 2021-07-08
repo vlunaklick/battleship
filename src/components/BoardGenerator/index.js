@@ -8,7 +8,20 @@ export default function BoardGenerator(props) {
         <div className='boardsCont'>
             {props.showAll ? (
                 <div className='containerALL'>
-                    <div className='textingGame'></div>
+                    <div className='textingGame'>
+                        {props.turnoMostrar === 0 ? (
+                            <div>
+                                <h2 className='textW'>Your turn</h2>
+                            </div>
+                        ) : (
+                            <div>
+                                <h2 className='textW'>
+                                    {props.turno === 'player' ? 'IA ' : 'You '}
+                                    shooted and hit {props.hiten}.
+                                </h2>
+                            </div>
+                        )}
+                    </div>
                     <div className='containerWP'>
                         <BoardDisplay
                             enemy={false}

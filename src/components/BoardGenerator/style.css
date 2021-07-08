@@ -39,9 +39,31 @@
     align-items: center;
 }
 
+.textingGame{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.192);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.textW{
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 2px black;
+}
+
 @media (max-width: 900px) {
     .containerWP{
         flex-direction: column;
         align-items: center;
+    }
+}
+@media (max-width: 800px) {
+    .textW{
+        font-size: 1rem;
     }
 }
