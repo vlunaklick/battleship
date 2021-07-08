@@ -17,7 +17,7 @@ export default function BoardGenerator(props) {
                             <div>
                                 <h2 className='textW'>
                                     {props.turno === 'player' ? 'IA ' : 'You '}
-                                    shooted and hit {props.hiten}.
+                                    shot and hit {props.hiten}.
                                 </h2>
                             </div>
                         )}
