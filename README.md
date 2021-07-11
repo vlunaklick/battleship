@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> In this post I tried to recreate the game "Battleship". It was to use some testing with jest.
+> In this post I recreated the game "Battleship". It was to use some testing with jest.
 
 ### ✨ [Live View](https://vlunaklick.github.io/battleship/)
 
