@@ -1,5 +1,4 @@
 .titlePlace{
-    background-color: whitesmoke;
     height: 50px;
     display: flex;
     align-items: center;
@@ -11,4 +10,5 @@
 .titPlace{
     margin: 0;
     font-size: 1rem;
+    color: #486581;
 }

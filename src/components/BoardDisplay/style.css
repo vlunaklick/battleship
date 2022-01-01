@@ -1,8 +1,7 @@
 .userBoard{
     display: grid;
-    grid-template-columns: repeat(10, 5vmin);
-    grid-template-rows: repeat(10, 5vmin);
-    margin-bottom: 1rem;
+    grid-template-columns: repeat(10, 35px);
+    grid-template-rows: repeat(10, 35px);
 }
 
 .agruparBoard{
@@ -10,22 +9,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 .textB{
     padding: 0.5rem 1rem;
-    background-color: rgba(0, 0, 0, 0.247);
+    background-color: #54D1DB;
     border-radius: 5px;
-    width: inherit;
-}
-
-.tB{
-    margin: 0;
+    width: 8.125rem;
+    height: 2.3rem;
+    border: 1px solid #38BEC9;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    color: white;
+}
+
+.tB{
+    color: #0E7C86;
+    font-size: 0.8rem;
 }
 
 @media (max-width: 800px) {

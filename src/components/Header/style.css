@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
 .headerCont{
-    padding: 1rem 0;
-    background-color: rgba(0, 0, 0, 0.582);
-    margin-bottom: 1rem;
+    background-color: #334e68;
 }
 .titHead{
     font-size: 3rem;

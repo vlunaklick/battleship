@@ -15,6 +15,17 @@
     padding: 0.3rem;
     margin: 0.5rem 0.75rem;
     text-transform: capitalize;
+    background-color: #38bec9;
+    outline: none;
+    color: #044E54;
+    border: 1px solid #0E7C86;
+    border-bottom: 2px solid #0E7C86;
+    transition: background-color 0.5s ease-in;
+    cursor: pointer;
+}
+
+.botonP:hover{
+    background-color: #14919B;
 }
 
 .botonesT{
@@ -41,19 +52,16 @@
 
 .textingGame{
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.192);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     padding: 1rem 0;
-    margin-bottom: 1rem;
 }
 
 .textW{
     margin: 0;
-    color: white;
-    text-shadow: 0 0 2px black;
+    color: #486581;
 }
 
 @media (max-width: 900px) {
